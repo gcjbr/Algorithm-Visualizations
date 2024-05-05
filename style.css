@@ -3,7 +3,9 @@
     --color-dark-1: #31363F;
     --color-dark-2: #43536b;
     --color-bg:  var(--color-dark-1);
-    --color-text: #EEEEEE;
+    --color-text: #FAF0E6;
+    --color-highlight: #557e80;
+    --color-highlight2: #66347F;
 }
 
 /* General reset and typography settings */
@@ -56,6 +58,15 @@ button {
 
 button:hover {
     background-color: #9E4784; /* Lighter purple for hover state */
+}
+
+.highlight {
+    background-color: var(--color-highlight); /* Dark purple for highlighting code lines */
+    color: #EEEEEE;
+}
+
+.setup-menu {
+    margin-bottom: 20px;
 }
 
 /* Responsive design tweaks */

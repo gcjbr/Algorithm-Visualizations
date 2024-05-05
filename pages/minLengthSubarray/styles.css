@@ -12,11 +12,11 @@
 }
 
 .active {
-    background-color: #76ABA8; /* Active color from the cold palette */
+    background-color: var(--color-highlight2); 
 }
 
 .min-length {
-    background-color: #D27685; /* Warm color when min length is found */
+    background-color: var(--color-highlight); 
 }
 
 #codeVisualizer pre {
@@ -26,24 +26,22 @@
     overflow-x: auto;
 }
 
-.highlight {
-    background-color: #37306B; /* Dark purple for highlighting code lines */
-    color: #EEEEEE;
-}
+
 
 /* Variable visualizer styles */
 #variableVisualizer ul {
     list-style-type: none;
     padding: 0;
-    background-color: #37306B; /* Background from the warm palette */
+    background-color: #5C5470; 
     border-radius: 5px;
     margin-top: 20px;
     padding: 10px;
+
 }
 
 #variableVisualizer li {
     margin-bottom: 10px;
     font-size: 16px;
-    color: #EEEEEE;
+    color: #FAF0E6;
 }
 
