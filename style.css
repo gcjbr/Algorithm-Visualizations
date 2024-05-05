@@ -1,0 +1,66 @@
+/* Color variables */
+:root {
+    --color-dark-1: #31363F;
+    --color-dark-2: #43536b;
+    --color-bg:  var(--color-dark-1);
+    --color-text: #EEEEEE;
+}
+
+/* General reset and typography settings */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg); 
+    color: var(--color-text);
+}
+
+/* Header and global container styles */
+header, main {
+    padding: 20px;
+
+}
+
+/* Styling for input areas */
+label {
+    font-size: 16px;
+    color: #EEEEEE;
+}
+
+input[type="text"], input[type="number"] {
+    padding: 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px 0 20px;
+    width: calc(100% - 44px); 
+    background-color: var(--color-dark-2); 
+    color: var(--color-text); 
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    outline: none;
+    border: 2px solid #76ABA8; /* Highlight color from the cold palette */
+}
+
+button {
+    background-color: #66347F; /* Purple from the warm palette */
+    color: #EEEEEE;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #9E4784; /* Lighter purple for hover state */
+}
+
+/* Responsive design tweaks */
+@media (max-width: 600px) {
+    input[type="text"], input[type="number"], button {
+        width: 90%;
+    }
+}

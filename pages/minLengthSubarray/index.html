@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subarray Length Visualizer</title>
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <label for="numsInput">Enter Array (comma-separated):</label>
+      <input type="text" id="numsInput" value="2,3,1,2,4,3" />
+    </div>
+    <div>
+      <label for="sumInput">Enter Sum:</label>
+      <input type="number" id="sumInput" value="7" />
+    </div>
+    <button onclick="startVisualization()">Start Visualization</button>
+    <div id="arrayVisualizer"></div>
+    <div id="variableVisualizer">
+      <ul>
+        <li>Total: <span id="totalValue">0</span></li>
+        <li>Start Index: <span id="startIndex">0</span></li>
+        <li>End Index: <span id="endIndex">0</span></li>
+        <li>Min Length: <span id="minLen">Infinity</span></li>
+      </ul>
+    </div>
+    <div id="codeVisualizer">
+      <pre id="code">
+function startVisualization() {
+    let total = 0, start = 0, end = 0, minLen = Infinity;
+    while (start &lt; nums.length) {
+        if (total &lt; sum &amp;&amp; end &lt; nums.length) {
+            total += nums[end];
+            end++;
+        } else if (total &gt;= sum) {
+            minLen = Math.min(minLen, end - start);
+            total -= nums[start];
+            start++;
+        } else {
+            break;
+        }
+    }
+    return minLen === Infinity ? 0 : minLen;
+}
+        </pre
+      >
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

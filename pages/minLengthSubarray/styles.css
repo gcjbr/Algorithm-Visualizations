@@ -1,0 +1,49 @@
+/* Visualization and code display styles */
+#arrayVisualizer div, #codeVisualizer pre {
+    transition: background-color 0.3s;
+}
+
+#arrayVisualizer div {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #5D737E; /* Matching cooler border color */
+    border-radius: 3px;
+}
+
+.active {
+    background-color: #76ABA8; /* Active color from the cold palette */
+}
+
+.min-length {
+    background-color: #D27685; /* Warm color when min length is found */
+}
+
+#codeVisualizer pre {
+    background-color: #222831; /* Background for the code block */
+    border-left: 4px solid #76ABA8;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.highlight {
+    background-color: #37306B; /* Dark purple for highlighting code lines */
+    color: #EEEEEE;
+}
+
+/* Variable visualizer styles */
+#variableVisualizer ul {
+    list-style-type: none;
+    padding: 0;
+    background-color: #37306B; /* Background from the warm palette */
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+#variableVisualizer li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #EEEEEE;
+}
+
