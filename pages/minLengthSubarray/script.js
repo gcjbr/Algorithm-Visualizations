@@ -4,7 +4,6 @@ let code = document.getElementById('code');
 function parseInput() {
     const numsInput = document.getElementById('numsInput').value;
     const sumInput = document.getElementById('sumInput').value;
-
     return {
         nums: numsInput.split(',').map(num => parseInt(num.trim(), 10)),
         sum: parseInt(sumInput, 10)
@@ -28,6 +27,19 @@ function updateVariableDisplay(total, start, end, minLen) {
     document.getElementById('minLen').textContent = minLen === Infinity ? 'Infinity' : minLen.toString();
 }
 
+function updateVisual(minLen, start, end) {
+    for (let i = 0; i < visualArray.children.length; i++) {
+        let element = visualArray.children[i];
+        element.className = '';
+        if (i >= start && i < end) {
+            element.className = 'active';
+        }
+        if (minLen === end - start && i >= start && i < end) {
+            element.className = 'min-length';
+        }
+    }
+}
+
 function highlightLine(lineNumber) {
     let lines = code.textContent.split('\n');
     code.innerHTML = lines.map((line, index) => {
@@ -40,49 +52,46 @@ function startVisualization() {
     displayArray(nums);
 
     let total = 0, start = 0, end = 0, minLen = Infinity;
-    let currentIndex = 0; // To track which line to highlight
+    let delay = 500;  // Delay between steps
 
-    function executeSteps() {
-        highlightLine(currentIndex); // Highlight the initial line
-        if (total < sum && end < nums.length) {
-            currentIndex = 3; // Line index of the if condition
-            highlightLine(currentIndex);
-            setTimeout(() => {
-                total += nums[end];
-                currentIndex = 4; // Line index where total is incremented
-                highlightLine(currentIndex);
-                end++;
-                currentIndex = 5; // Line index where end is incremented
-                highlightLine(currentIndex);
-                proceed();
-            }, 500);
-        } else if (total >= sum) {
-            currentIndex = 7; // Line index of the else-if condition
-            highlightLine(currentIndex);
-            setTimeout(() => {
-                minLen = Math.min(minLen, end - start);
-                currentIndex = 8; // Line where minLen is potentially updated
-                highlightLine(currentIndex);
-                total -= nums[start];
-                currentIndex = 9; // Line where total is decremented
-                highlightLine(currentIndex);
-                start++;
-                currentIndex = 10; // Line where start is incremented
-                highlightLine(currentIndex);
-                proceed();
-            }, 500);
-        } else {
-            currentIndex = 14; // Return
-            highlightLine(currentIndex);
+    function executeStep() {
+        if (start < nums.length) {
+            if (total < sum && end < nums.length) {
+                highlightLine(3); // Highlight condition check
+                setTimeout(() => {
+                    total += nums[end];
+                    highlightLine(4); // Highlight addition operation
+                    end++;
+                    highlightLine(5); // Highlight end increment
+                    proceed();
+                }, delay);
+            } else if (total >= sum) {
+                highlightLine(7); // Highlight condition check
+                setTimeout(() => {
+                    minLen = Math.min(minLen, end - start);
+                    highlightLine(8); // Highlight min length update
+                    total -= nums[start];
+                    highlightLine(9); // Highlight subtraction operation
+                    start++;
+                    highlightLine(10); // Highlight start increment
+                    proceed();
+                }, delay);
+            } else {
+                highlightLine(14); // Highlight the break condition
+                setTimeout(() => {
+                    alert('Minimum Length Subarray: ' + (minLen === Infinity ? 0 : minLen));
+                }, delay);
+            }
         }
     }
 
     function proceed() {
         updateVariableDisplay(total, start, end, minLen);
-        setTimeout(executeSteps, 1000); // Continue to next step after 1 second
+        updateVisual(minLen, start, end);
+        setTimeout(executeStep, delay * 2);  // Wait before next step
     }
 
-    executeSteps(); // Start the execution steps
+    setTimeout(executeStep, delay); // Start the process
 }
 
 document.getElementById('numsInput').addEventListener('keyup', function(event) {
